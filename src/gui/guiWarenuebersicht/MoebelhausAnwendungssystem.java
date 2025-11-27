@@ -1,4 +1,4 @@
-package gui;
+package gui.guiWarenuebersicht;
    
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

@@ -1,4 +1,4 @@
-package gui;
+package gui.guiWarenuebersicht;
 
 import business.MoebelstueckModel;
 import javafx.event.ActionEvent;

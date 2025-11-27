@@ -1,19 +1,21 @@
-package gui;
+package gui.guiWarenuebersicht;
 
 import java.io.IOException;
 
 import business.Moebelstueck;
 import business.MoebelstueckModel;
 import javafx.stage.Stage;
+import ownUtil.Observer;
 
-public class MoebelstueckControl {
+public class MoebelstueckControl implements Observer {
 	private MoebelstueckModel moebelstueckModel; 
 	private MoebelstueckView moebelstueckView;
 	
 	
 	public MoebelstueckControl(Stage primaryStage) {
-		this.moebelstueckModel = new MoebelstueckModel();
+		this.moebelstueckModel = moebelstueckModel.getInstance();
 		this.moebelstueckView = new MoebelstueckView(this, moebelstueckModel, primaryStage);
+		moebelstueckModel.addObserver(this);
 	} 
 	
 	  
@@ -64,6 +66,13 @@ public class MoebelstueckControl {
 	       		moebelstueckView.zeigeFehlermeldungsfensterAn(exc.getMessage());
 	     	}
 	    }
+
+
+	
+	public void update() {
+		moebelstueckView.zeigeMoebelstueckAn(); 
+		
+	}
 	   
 
 	
