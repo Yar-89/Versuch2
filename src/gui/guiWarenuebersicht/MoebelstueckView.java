@@ -1,5 +1,6 @@
 package gui.guiWarenuebersicht;
 
+import business.Moebelstueck;
 import business.MoebelstueckModel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -123,7 +124,7 @@ public class MoebelstueckView {
 		  	    this.mnDatei.getItems().add(mnItmCsvExport);
 		 	    pane.getChildren().add(mnbrMenuLeiste);
 		   }
-		   
+		   /*
 		    public void initListener() {
 			    btnEingabe.setOnAction(new EventHandler<ActionEvent>() {
 		            @Override
@@ -155,11 +156,41 @@ public class MoebelstueckView {
 						moebelstueckControl.schreibeMoebelstueckeInCsvDatei();
 					}	
 			    });
+		    }*/
+		    
+		    
+		    public void initListener() {
+
+		        btnEingabe.setOnAction(e ->
+		            moebelstueckControl.nehmeMoebelstueckAuf()
+		        );
+
+		        btnAnzeige.setOnAction(e ->
+		            zeigeMoebelstueckAn()
+		        );
+
+		        mnItmCsvImport.setOnAction(e ->
+		            moebelstueckControl.leseAusDatei("csv")
+		        );
+
+		        mnItmTxtImport.setOnAction(e ->
+		            moebelstueckControl.leseAusDatei("txt")
+		        );
+
+		        mnItmCsvExport.setOnAction(e ->
+		            moebelstueckControl.schreibeMoebelstueckeInCsvDatei()
+		        );
 		    }
+
 		    public void zeigeMoebelstueckAn(){
-		    	if(this.moebelstueckModel.getMoebelstueck() != null){
-		    		txtAnzeige.setText(
-		    			this.moebelstueckModel.getMoebelstueck().gibMoebelstueckZurueck(' '));
+		    	if(moebelstueckModel.getMoebelstueck().size() > 0){
+		    		StringBuffer text = new StringBuffer(); 
+		    		
+		    		for (Moebelstueck moebelstueck1: this.moebelstueckModel.getMoebelstueck() ) {
+		    			text.append(moebelstueck1.gibMoebelstueckZurueck(' '));
+		    			text.append("\n \n"); 
+		    		} 
+		    		this.txtAnzeige.setText(text.toString());
 		    	}
 		    	else{
 		    		zeigeInformationsfensterAn("Bisher wurde keine Moebelstueck aufgenommen!");

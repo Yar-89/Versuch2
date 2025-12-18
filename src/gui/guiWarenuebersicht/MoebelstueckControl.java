@@ -54,7 +54,7 @@ public class MoebelstueckControl implements Observer {
 	}
 	 public void nehmeMoebelstueckAuf(){
 	    	try{ 
-	    		this.moebelstueckModel.setMoebelstueck ( new Moebelstueck(
+	    		this.moebelstueckModel.addMoebelstueck ( new Moebelstueck(
 	    			moebelstueckView.getTxtName().getText(), 
 	    			moebelstueckView.getTxtWohnraum().getText(),
 	    			moebelstueckView.getTxtStil().getText(),

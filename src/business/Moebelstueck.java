@@ -8,6 +8,8 @@ public class Moebelstueck {
     private float preis;
     private String[] materialien;
     
+    
+    
     public Moebelstueck(String name, String wohnraum, String stil,
        	float preis, String[] materialien){
     	this.name = name;
@@ -15,6 +17,10 @@ public class Moebelstueck {
        	this.stil = stil;
        	this.preis = preis;
        	this.materialien = materialien;
+       	
+       	if (materialien == null) {
+       		throw new IllegalArgumentException();
+       	}
     }
 
 	public String getName() {
@@ -75,3 +81,6 @@ public class Moebelstueck {
   	}
 }
 
+
+
+// Esszimmersruhl. esszimmer. rustikal. 399, holz 

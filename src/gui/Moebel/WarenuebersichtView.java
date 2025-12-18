@@ -2,6 +2,7 @@ package gui.Moebel;
 
 
 
+import business.Moebelstueck;
 import business.MoebelstueckModel;
 import javafx.event.*;
 import javafx.scene.Scene;
@@ -68,9 +69,14 @@ public class WarenuebersichtView {
     	    }
     	   
     	   public void zeigeMoebelstueckAn(){
-		    	if(this.moebelstueckModel.getMoebelstueck() != null){
-		    		txtAnzeigeMoebel.setText(this.moebelstueckModel.getMoebelstueck().gibMoebelstueckZurueck(' '));
-		    	}
+		    	if(this.moebelstueckModel.getMoebelstueck().size() > 0){
+		    		 StringBuffer text = new StringBuffer(); 
+		    		 for(Moebelstueck moebelstueck: this.moebelstueckModel.getMoebelstueck()) {
+		    			 text.append(moebelstueck.gibMoebelstueckZurueck(' '));
+		    			 text.append("\n \n"); 
+		    		 }
+		    		 this.txtAnzeigeMoebel.setText(text.toString());
+		    	} 
 		    	else{
 		    		zeigeInformationsfensterAn("Bisher wurde keine Moebelstueck aufgenommen!");
 		    	}
